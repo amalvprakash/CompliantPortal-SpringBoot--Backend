@@ -8,6 +8,9 @@ import org.springframework.data.repository.query.Param;
 import java.util.List;
 
 public interface UserDAO extends CrudRepository<UserModel, Integer> {
-    @Query(value = "SELECT `id`, `address`, `dob`, `email`, `name`, `password`, `phone_number` FROM `user_table` WHERE `email`=:email AND `password`=:password ",nativeQuery = true)
+    @Query(value = "SELECT `id`, `address`, `dob`, `email`, `name`, `password`, `phone_number` FROM `user_table` WHERE `email`=:email AND `password`=:password",nativeQuery = true)
     List<UserModel>UserReg(@Param("email")String email,@Param("password")String password);
+
+    @Query(value = "SELECT * FROM `user_table` WHERE  `id` =:id",nativeQuery = true)
+    List<UserModel>Profile(@Param("id") Integer id);
 }
